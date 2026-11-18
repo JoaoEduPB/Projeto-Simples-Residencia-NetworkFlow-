@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cqn45ryo15nw8"]
+
+[ext_resource type="Texture2D" uid="uid://f525gqf132jh" path="res://assets/cenarios/Laboratorio.png" id="1_opwvu"]
+[ext_resource type="Texture2D" uid="uid://c8bwvkis2of2n" path="res://assets/personagens/protoboard.png" id="2_ltgdy"]
+[ext_resource type="Script" uid="uid://b2orrt0en57c8" path="res://src/fases/Protoboard.cs" id="3_akhlb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_henly"]
+atlas = ExtResource("2_ltgdy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opwvu"]
+atlas = ExtResource("2_ltgdy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltgdy"]
+atlas = ExtResource("2_ltgdy")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akhlb"]
+atlas = ExtResource("2_ltgdy")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2apnv"]
+atlas = ExtResource("2_ltgdy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wi6ju"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_henly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opwvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltgdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akhlb")
+}],
+"loop": 1,
+"name": &"Andando",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2apnv")
+}],
+"loop": 1,
+"name": &"Parado",
+"speed": 5.0
+}]
+
+[node name="Laboratório" type="Node2D" unique_id=156517541]
+
+[node name="Laboratorio" type="Sprite2D" parent="." unique_id=1883875332]
+position = Vector2(577.0001, 326)
+scale = Vector2(1.1718107, 1.200565)
+texture = ExtResource("1_opwvu")
+
+[node name="Protoboard" type="AnimatedSprite2D" parent="Laboratorio" unique_id=1424856394]
+position = Vector2(8.699524, 93.23111)
+scale = Vector2(3.306847, 2.889264)
+sprite_frames = SubResource("SpriteFrames_wi6ju")
+animation = &"Andando"
+script = ExtResource("3_akhlb")
