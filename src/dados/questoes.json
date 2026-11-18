@@ -1,0 +1,366 @@
+{
+  "Fisica": [
+    {
+      "enunciado": "Qual é a unidade de dados manipulada diretamente pela Camada Física do modelo OSI?",
+      "alternativas": ["Pacote", "Bit", "Quadro", "Segmento"],
+      "indiceCorreta": 1,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Qual equipamento clássico opera na Camada Física apenas regenerando e replicando sinais para todas as portas?",
+      "alternativas": ["Switch", "Roteador", "Hub", "Bridge"],
+      "indiceCorreta": 2,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Quais são os três principais meios físicos guiados utilizados em redes de computadores?",
+      "alternativas": ["Par trançado, cabo coaxial e fibra óptica", "Wi-Fi, Bluetooth e infravermelho", "Micro-ondas, satélite e rádio", "USB, HDMI e DisplayPort"],
+      "indiceCorreta": 0,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "O que significa a sigla UTP nos cabos de rede Ethernet mais comuns?",
+      "alternativas": ["Universal Twisted Protocol", "Ultra Transfer Pair", "Unified Transmission Path", "Unshielded Twisted Pair"],
+      "indiceCorreta": 3,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "De que forma os bits são transmitidos no interior de um cabo de fibra óptica?",
+      "alternativas": ["Variações de tensão elétrica", "Pulsos de luz", "Ondas eletromagnéticas de rádio", "Campos magnéticos alternados"],
+      "indiceCorreta": 1,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Qual conector modular de 8 posições é o padrão para cabos de par trançado Ethernet?",
+      "alternativas": ["RJ-11", "BNC", "RJ-45", "SC"],
+      "indiceCorreta": 2,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Como é classificado um modo de transmissão unidirecional em que apenas um lado transmite e o outro só recebe?",
+      "alternativas": ["Simplex", "Half-Duplex", "Full-Duplex", "Multiplex"],
+      "indiceCorreta": 0,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Qual topologia física conecta todos os computadores individuais a um nó central como um hub ou switch?",
+      "alternativas": ["Barramento", "Anel", "Malha completa", "Estrela"],
+      "indiceCorreta": 3,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Como se chama a perda gradual de intensidade do sinal elétrico ou óptico à medida que percorre o meio?",
+      "alternativas": ["Refração", "Atenuação", "Modulação", "Multiplexação"],
+      "indiceCorreta": 1,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Qual é a principal diferença entre comunicações Half-Duplex e Full-Duplex?",
+      "alternativas": ["Full-Duplex transmite e recebe simultaneamente; Half-Duplex alterna o sentido", "Half-Duplex usa fibra óptica; Full-Duplex usa apenas cobre", "Full-Duplex não utiliza relógio de sincronismo", "Half-Duplex permite apenas comunicação broadcast"],
+      "indiceCorreta": 0,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Qual nome recebe a interferência eletromagnética causada por um par de fios sobre outro par adjacente no cabo?",
+      "alternativas": ["Jitter", "Latência", "Crosstalk (Diafonia)", "Dispersão cromática"],
+      "indiceCorreta": 2,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Qual característica diferencia a fibra óptica monomodo da fibra multimodo?",
+      "alternativas": ["Usa núcleo mais largo e LEDs de baixo custo", "É usada exclusivamente em distâncias menores que 10 metros", "Transmite sinais elétricos junto com pulsos ópticos", "Possui núcleo muito estreito que reduz a dispersão e alcança longas distâncias"],
+      "indiceCorreta": 3,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Um cabo de par trançado crimpado com o padrão T568A em uma ponta e T568B na outra é chamado de:",
+      "alternativas": ["Cabo Direto (Straight-Through)", "Cabo Crossover (Cruzado)", "Cabo Rollover (Console)", "Cabo Coaxial"],
+      "indiceCorreta": 1,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Qual é a categoria mínima de cabo par trançado especificada para operar Gigabit Ethernet (1000BASE-T) a 100 metros?",
+      "alternativas": ["Cat 3", "Cat 5", "Cat 5e", "Cat 7"],
+      "indiceCorreta": 2,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Qual é o objetivo principal da codificação de linha Manchester usada no Ethernet clássico (10BASE-T)?",
+      "alternativas": ["Garantir transições regulares no sinal para manter o sincronismo de clock", "Comprimir os dados antes do envio", "Criptografar os bits na camada física", "Aumentar a voltagem do sinal para 110V"],
+      "indiceCorreta": 0,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Qual técnica de modulação digital altera a amplitude da onda portadora para representar os bits 0 e 1?",
+      "alternativas": ["FSK (Frequency Shift Keying)", "PSK (Phase Shift Keying)", "PCM (Pulse Code Modulation)", "ASK (Amplitude Shift Keying)"],
+      "indiceCorreta": 3,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Segundo o Teorema de Nyquist para um canal sem ruído de largura de banda B e V níveis de sinal, qual é a taxa máxima?",
+      "alternativas": ["B * log2(1 + V)", "2 * B * log2(V)", "B / (2 * V)", "V * log10(B)"],
+      "indiceCorreta": 1,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Qual teorema estabelece a capacidade máxima teórica de um canal ruidoso a partir da largura de banda e da relação sinal-ruído?",
+      "alternativas": ["Teorema de Shannon-Hartley", "Teorema de Nyquist", "Lei de Ohm", "Princípio de Bernoulli"],
+      "indiceCorreta": 0,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Qual é a relação correta entre taxa de símbolos (Baud Rate) e taxa de bits (Bit Rate)?",
+      "alternativas": ["São sempre numericamente iguais em qualquer modulação", "Baud rate é sempre o dobro do bit rate", "Bit rate é igual ao baud rate multiplicado pelo número de bits por símbolo", "Bit rate depende apenas do comprimento do cabo"],
+      "indiceCorreta": 2,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Qual fenômeno limita a distância em fibras multimodo porque raios de luz entram em ângulos diferentes e chegam em tempos distintos?",
+      "alternativas": ["Efeito Doppler", "Polarização inversa", "Atenuação ôhmica", "Dispersão modal"],
+      "indiceCorreta": 3,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Por que o Fast Ethernet (100BASE-TX) combina a codificação 4B/5B com MLT-3 ou NRZI?",
+      "alternativas": ["Para dobrar a largura de banda do cabo Cat 3", "Para evitar longas sequências de zeros e garantir transições de sincronismo", "Para converter sinais ópticos em sinais de rádio", "Para dispensar o uso de transformadores de isolamento"],
+      "indiceCorreta": 1,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Qual tecnologia permite transmitir múltiplos canais ópticos simultaneamente na mesma fibra usando diferentes comprimentos de onda?",
+      "alternativas": ["WDM (Wavelength Division Multiplexing)", "TDM (Time Division Multiplexing)", "CSMA/CD", "PoE (Power over Ethernet)"],
+      "indiceCorreta": 0,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Qual é a impedância característica nominal dos cabos de par trançado utilizados em redes Ethernet?",
+      "alternativas": ["50 Ohms", "75 Ohms", "100 Ohms", "600 Ohms"],
+      "indiceCorreta": 2,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Como o padrão 1000BASE-T atinge 1 Gbps utilizando cabos Cat 5e de apenas 100 MHz de largura de banda?",
+      "alternativas": ["Comprimindo os pacotes IP na placa de rede", "Usando apenas um par de fios a 1 GHz", "Alternando entre fibra e cobre a cada milissegundo", "Usando codificação PAM-5 nos 4 pares simultaneamente com cancelamento de eco"],
+      "indiceCorreta": 3,
+      "dificuldade": "Impossivel"
+    },
+    {
+      "enunciado": "Em um canal com relação sinal-ruído linear S/N = 1000, qual é o valor correspondente da SNR em decibéis (dB)?",
+      "alternativas": ["10 dB", "30 dB", "100 dB", "300 dB"],
+      "indiceCorreta": 1,
+      "dificuldade": "Impossivel"
+    },
+    {
+      "enunciado": "Qual efeito eletromagnético faz com que sinais de alta frequência fluam apenas próximo à superfície externa do condutor de cobre?",
+      "alternativas": ["Efeito pelicular (Skin Effect)", "Efeito Hall", "Histerese magnética", "Efeito fotoelétrico"],
+      "indiceCorreta": 0,
+      "dificuldade": "Impossivel"
+    },
+    {
+      "enunciado": "Qual é a diferença técnica entre NEXT e FEXT em testes de certificação de cabeamento estruturado?",
+      "alternativas": ["NEXT ocorre na fibra; FEXT ocorre no Wi-Fi", "NEXT é perda de potência; FEXT é atraso de propagação", "NEXT mede diafonia na mesma ponta do transmissor; FEXT mede na ponta oposta", "NEXT só ocorre em cabos blindados; FEXT apenas em UTP"],
+      "indiceCorreta": 2,
+      "dificuldade": "Impossivel"
+    },
+    {
+      "enunciado": "Qual condição física permite a reflexão interna total que mantém a luz guiada dentro do núcleo da fibra óptica?",
+      "alternativas": ["A casca deve ser feita de cobre polido", "O ângulo de incidência deve ser menor que o ângulo crítico", "O comprimento de onda da luz deve ser menor que 10 nm", "O índice de refração do núcleo deve ser maior que o da casca"],
+      "indiceCorreta": 3,
+      "dificuldade": "Impossivel"
+    },
+    {
+      "enunciado": "Qual é a principal vantagem da codificação 64B/66B com scrambling do 10GBASE-R sobre a 8B/10B?",
+      "alternativas": ["Elimina a necessidade de relógio no receptor", "Reduz o overhead de codificação de 25% para ~3,1% mantendo densidade de transições", "Permite usar cabos coaxiais antigos a 10 Gbps", "Corrige automaticamente até 8 bits errados por bloco"],
+      "indiceCorreta": 1,
+      "dificuldade": "Impossivel"
+    },
+    {
+      "enunciado": "O que provoca uma degradação severa de Return Loss (Perda de Retorno) em um enlace metálico de alta velocidade?",
+      "alternativas": ["Descasamento de impedância por dobras bruscas ou conectores mal terminados que refletem o sinal", "Excesso de aterramento na blindagem do rack", "Uso de LEDs infravermelhos em vez de laser", "Comprimento de cabo inferior a 5 metros"],
+      "indiceCorreta": 0,
+      "dificuldade": "Impossivel"
+    }
+  ],
+  "Enlace": [
+    {
+      "enunciado": "Qual é o nome da Unidade de Dados de Protocolo (PDU) da Camada de Enlace?",
+      "alternativas": ["Segmento", "Pacote", "Quadro (Frame)", "Datagrama"],
+      "indiceCorreta": 2,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Qual dispositivo de rede encaminha quadros na rede local consultando uma tabela de endereços MAC?",
+      "alternativas": ["Switch", "Hub", "Repetidor", "Modem analógico"],
+      "indiceCorreta": 0,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Qual é o tamanho total em bits de um endereço MAC padrão IEEE 802?",
+      "alternativas": ["16 bits", "32 bits", "64 bits", "48 bits"],
+      "indiceCorreta": 3,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Qual endereço MAC representa um envio em broadcast na Camada de Enlace?",
+      "alternativas": ["00:00:00:00:00:00", "FF:FF:FF:FF:FF:FF", "127.0.0.1", "AA:BB:CC:DD:EE:FF"],
+      "indiceCorreta": 1,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Em quais duas subcamadas o padrão IEEE 802 divide a Camada de Enlace?",
+      "alternativas": ["LLC (Logical Link Control) e MAC (Media Access Control)", "TCP e UDP", "IP e ARP", "HTTP e DNS"],
+      "indiceCorreta": 0,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Qual protocolo é utilizado para descobrir o endereço MAC correspondente a um endereço IPv4 na rede local?",
+      "alternativas": ["DHCP", "ICMP", "ARP", "DNS"],
+      "indiceCorreta": 2,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Qual método de controle de acesso ao meio foi definido para o Ethernet cabeado compartilhado?",
+      "alternativas": ["Token Ring", "CSMA/CA", "TDMA", "CSMA/CD"],
+      "indiceCorreta": 3,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Qual método de acesso ao meio é utilizado pelas redes sem fio Wi-Fi (IEEE 802.11) para evitar colisões?",
+      "alternativas": ["CSMA/CD", "CSMA/CA", "Aloha Puro", "FDMA"],
+      "indiceCorreta": 1,
+      "dificuldade": "Facil"
+    },
+    {
+      "enunciado": "Qual algoritmo é utilizado no campo FCS do trailer Ethernet para detectar erros de transmissão no quadro?",
+      "alternativas": ["CRC-32 (Cyclic Redundancy Check)", "SHA-256", "AES-128", "RSA"],
+      "indiceCorreta": 0,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "O que um switch faz quando recebe um quadro unicast cujo MAC de destino ainda não consta em sua tabela CAM?",
+      "alternativas": ["Descarta o quadro imediatamente", "Devolve o quadro apenas para o remetente", "Realiza flooding, enviando o quadro para todas as portas exceto a de origem", "Envia o quadro apenas para o roteador padrão"],
+      "indiceCorreta": 2,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Qual é o intervalo de tamanho permitido para o campo de dados (payload) de um quadro Ethernet II padrão sem VLAN?",
+      "alternativas": ["1 a 512 bytes", "46 a 1500 bytes", "64 a 9000 bytes", "20 a 65535 bytes"],
+      "indiceCorreta": 1,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Qual protocolo atua na Camada de Enlace para bloquear caminhos redundantes e evitar tempestades de broadcast entre switches?",
+      "alternativas": ["OSPF", "BGP", "VTP", "STP (Spanning Tree Protocol)"],
+      "indiceCorreta": 3,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Qual padrão IEEE define a inserção de etiquetas (tags) de VLAN dentro dos quadros Ethernet?",
+      "alternativas": ["IEEE 802.1Q", "IEEE 802.11ax", "IEEE 802.3af", "IEEE 802.15.1"],
+      "indiceCorreta": 0,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "O que representam os primeiros 24 bits (3 primeiros bytes) de um endereço MAC universal?",
+      "alternativas": ["A sub-rede IP do dispositivo", "A porta física do switch", "O OUI (identificador único do fabricante)", "O checksum do quadro"],
+      "indiceCorreta": 2,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Por que o CRC é muito mais eficaz que um bit de paridade simples na detecção de erros em enlaces?",
+      "alternativas": ["Porque corrige qualquer quantidade de bits errados sem retransmissão", "Porque detecta erros em rajada (burst errors) usando divisão polinomial", "Porque reduz o tamanho do cabeçalho Ethernet", "Porque criptografa o endereço MAC de origem"],
+      "indiceCorreta": 1,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Qual protocolo de enlace ponto-a-ponto suporta múltiplos protocolos de rede e autenticação via PAP ou CHAP?",
+      "alternativas": ["Ethernet", "ARP", "LLC", "PPP (Point-to-Point Protocol)"],
+      "indiceCorreta": 3,
+      "dificuldade": "Medio"
+    },
+    {
+      "enunciado": "Qual técnica o protocolo HDLC utiliza para impedir que uma sequência de dados seja confundida com a flag 01111110?",
+      "alternativas": ["Bit stuffing (inserção de um bit 0 após cinco bits 1 consecutivos)", "Compressão Huffman", "Criptografia simétrica", "Fragmentação IP"],
+      "indiceCorreta": 0,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Qual é a diferença fundamental entre os protocolos de janela deslizante Go-Back-N e Selective Repeat?",
+      "alternativas": ["Go-Back-N não usa números de sequência", "Selective Repeat só funciona em enlaces simplex", "Selective Repeat reenvia apenas o quadro perdido; Go-Back-N reenvia ele e todos os seguintes", "Go-Back-N tem janela de recepção maior que a de transmissão"],
+      "indiceCorreta": 2,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Qual mecanismo opcional do Wi-Fi (802.11) resolve o Problema do Terminal Oculto reservando o canal antes dos dados?",
+      "alternativas": ["ARP Gratuito", "RTS/CTS (Request to Send / Clear to Send)", "STP BPDU", "DHCP Discover"],
+      "indiceCorreta": 1,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Quantos bytes a tag padrão IEEE 802.1Q adiciona ao cabeçalho de um quadro Ethernet?",
+      "alternativas": ["2 bytes", "8 bytes", "12 bytes", "4 bytes"],
+      "indiceCorreta": 3,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Como o modo de comutação Store-and-Forward de um switch difere do modo Cut-Through?",
+      "alternativas": ["Store-and-Forward recebe o quadro inteiro e valida o FCS antes de encaminhar", "Cut-Through armazena o quadro em disco antes do envio", "Store-and-Forward ignora erros de CRC para ganhar velocidade", "Cut-Through funciona apenas em portas de 10 Mbps"],
+      "indiceCorreta": 0,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Qual protocolo padronizado pelo IEEE 802.1AX negocia dinamicamente a agregação de múltiplos enlaces físicos entre switches?",
+      "alternativas": ["LLDP", "VRRP", "LACP (Link Aggregation Control Protocol)", "HSRP"],
+      "indiceCorreta": 2,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Como uma interface de rede distingue se o campo de 2 bytes após o MAC de origem é Length (802.3) ou EtherType (Ethernet II)?",
+      "alternativas": ["Pelo valor do último bit do endereço MAC", "Valores até 1500 indicam tamanho; valores iguais ou maiores que 1536 (0x0600) indicam EtherType", "Pelo preâmbulo de 7 bytes", "Pelo endereço IP de destino"],
+      "indiceCorreta": 1,
+      "dificuldade": "Dificil"
+    },
+    {
+      "enunciado": "Quais são os três estados possíveis de uma porta no Rapid Spanning Tree Protocol (RSTP - IEEE 802.1w)?",
+      "alternativas": ["Blocking, Listening e Forwarding", "Disabled, Sleeping e Active", "Init, Two-Way e Full", "Discarding, Learning e Forwarding"],
+      "indiceCorreta": 3,
+      "dificuldade": "Impossivel"
+    },
+    {
+      "enunciado": "Por que o quadro Ethernet mínimo tem 64 bytes (512 bits) em redes CSMA/CD de 10/100 Mbps?",
+      "alternativas": ["Para garantir que o transmissor detecte qualquer colisão antes de terminar de enviar o quadro", "Porque os processadores antigos só liam blocos de 64 bytes", "Para acomodar o cabeçalho IPv6 completo", "Para evitar saturação da memória flash do switch"],
+      "indiceCorreta": 0,
+      "dificuldade": "Impossivel"
+    },
+    {
+      "enunciado": "O que indica o bit menos significativo do primeiro octeto (bit I/G) em um endereço MAC?",
+      "alternativas": ["Se o cabo é direto ou crossover", "Se a velocidade da placa é 100 Mbps ou 1 Gbps", "Se o endereço é Unicast (0) ou Multicast/Broadcast (1)", "Se o quadro possui tag VLAN 802.1Q"],
+      "indiceCorreta": 2,
+      "dificuldade": "Impossivel"
+    },
+    {
+      "enunciado": "Qual mecanismo de detecção de portadora virtual no IEEE 802.11 usa o campo Duration do cabeçalho MAC para adiar transmissões?",
+      "alternativas": ["CSMA/CD", "NAV (Network Allocation Vector)", "BPDU Guard", "ARP Proxy"],
+      "indiceCorreta": 1,
+      "dificuldade": "Impossivel"
+    },
+    {
+      "enunciado": "Usando Código de Hamming simples (SEC), quantos bits de paridade r são necessários para proteger m = 8 bits de dados?",
+      "alternativas": ["2 bits", "3 bits", "8 bits", "4 bits"],
+      "indiceCorreta": 3,
+      "dificuldade": "Impossivel"
+    },
+    {
+      "enunciado": "Por que o intervalo SIFS é menor que o DIFS no controle de acesso do padrão IEEE 802.11?",
+      "alternativas": ["Para dar prioridade imediata a quadros de controle como ACK e CTS sobre novas transmissões de dados", "Para economizar bateria em estações ociosas", "Para aumentar o alcance do sinal em 5 GHz", "Para permitir colisões controladas entre roteadores"],
+      "indiceCorreta": 0,
+      "dificuldade": "Impossivel"
+    },
+    {
+      "enunciado": "Ao calcular um CRC utilizando um polinômio gerador de grau n, qual será o tamanho exato do campo FCS anexado ao quadro?",
+      "alternativas": ["n + 1 bits", "2n bits", "Exatamente n bits", "n - 1 bits"],
+      "indiceCorreta": 2,
+      "dificuldade": "Impossivel"
+    }
+  ]
+}
