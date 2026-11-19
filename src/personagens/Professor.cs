@@ -23,8 +23,8 @@ public partial class Professor : Area2D
 
     public override void _Ready()
     {
-        BodyEntered += OnBodyEntered;
-        BodyExited += OnBodyExited;
+        AreaEntered += OnAreaEntered;
+        AreaExited += OnAreaExited;
         CarregarQuestoesDoJson("res://src/dados/questoes.json");
     }
 
@@ -33,6 +33,7 @@ public partial class Professor : Area2D
         if (_jogadorPerto && Input.IsActionJustPressed("ui_accept"))
         {
             PrepararNovaBatalha();
+            GD.Print($"Batalha iniciada com {NomeProfessor}! Questões prontas: {_baralhoDisponivel.Count}");
             EmitSignal(SignalName.BatalhaIniciada, this);
         }
     }
@@ -83,15 +84,22 @@ public partial class Professor : Area2D
         return escolhida;
     }
 
-    private void OnBodyEntered(Node2D body)
+    private void OnAreaEntered(Area2D area)
     {
-        if (body.IsInGroup("Player"))
+        if (area.IsInGroup("Player"))
+        {
             _jogadorPerto = true;
+            GD.Print("Encostou no prof! Apertar Enter ou Espaço");
+        }
+            
     }
 
-    private void OnBodyExited(Node2D body)
+    private void OnAreaExited(Area2D area)
     {
-        if (body.IsInGroup("Player"))
+        if (area.IsInGroup("Player"))
+        {
             _jogadorPerto = false;
+            GD.Print("Saiu de perto do prof.");
+        }
     }
 }

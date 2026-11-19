@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://f525gqf132jh" path="res://assets/cenarios/Laboratorio.png" id="1_opwvu"]
 [ext_resource type="Texture2D" uid="uid://c8bwvkis2of2n" path="res://assets/personagens/protoboard.png" id="2_ltgdy"]
 [ext_resource type="Script" uid="uid://b2orrt0en57c8" path="res://src/personagens/Protoboard.cs" id="3_akhlb"]
+[ext_resource type="Script" uid="uid://b02a2seh2cwue" path="res://src/personagens/Professor.cs" id="4_akhlb"]
+[ext_resource type="Texture2D" uid="uid://ddwdbin2jenw6" path="res://assets/personagens/marcio.png" id="4_ltgdy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_henly"]
 atlas = ExtResource("2_ltgdy")
@@ -52,10 +54,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_y2f8h"]
+radius = 12.475384
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m13ap"]
+radius = 56.22277
+
 [node name="Laboratório" type="Node2D" unique_id=156517541]
 
 [node name="Laboratorio" type="Sprite2D" parent="." unique_id=1883875332]
-position = Vector2(577.0001, 326)
+position = Vector2(570.00006, 295)
 scale = Vector2(1.1718107, 1.200565)
 texture = ExtResource("1_opwvu")
 
@@ -67,3 +75,22 @@ animation = &"Andando"
 frame_progress = 0.5924479
 script = ExtResource("3_akhlb")
 Speed = 200.0
+
+[node name="Area2D" type="Area2D" parent="Laboratorio/Protoboard" unique_id=568101438 groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Laboratorio/Protoboard/Area2D" unique_id=2076530387]
+position = Vector2(-0.82432926, -0.84468275)
+shape = SubResource("CircleShape2D_y2f8h")
+
+[node name="Professor" type="Area2D" parent="." unique_id=507268530]
+position = Vector2(575, 278)
+script = ExtResource("4_akhlb")
+
+[node name="Sprite2D" type="Sprite2D" parent="Professor" unique_id=55478825]
+position = Vector2(20.999985, -48)
+scale = Vector2(5.7656245, 3.0156252)
+texture = ExtResource("4_ltgdy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Professor" unique_id=10996432]
+position = Vector2(14, 10)
+shape = SubResource("CircleShape2D_m13ap")
