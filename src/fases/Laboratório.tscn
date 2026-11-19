@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://f525gqf132jh" path="res://assets/cenarios/Laboratorio.png" id="1_opwvu"]
 [ext_resource type="Texture2D" uid="uid://c8bwvkis2of2n" path="res://assets/personagens/protoboard.png" id="2_ltgdy"]
-[ext_resource type="Script" uid="uid://b2orrt0en57c8" path="res://src/fases/Protoboard.cs" id="3_akhlb"]
+[ext_resource type="Script" uid="uid://b2orrt0en57c8" path="res://src/personagens/Protoboard.cs" id="3_akhlb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_henly"]
 atlas = ExtResource("2_ltgdy")
@@ -64,4 +64,6 @@ position = Vector2(8.699524, 93.23111)
 scale = Vector2(3.306847, 2.889264)
 sprite_frames = SubResource("SpriteFrames_wi6ju")
 animation = &"Andando"
+frame_progress = 0.5924479
 script = ExtResource("3_akhlb")
+Speed = 200.0
