@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://b4pnehj4uj53e"]
+
+[ext_resource type="Texture2D" uid="uid://f525gqf132jh" path="res://assets/cenarios/Laboratorio.png" id="1_73b72"]
+[ext_resource type="Texture2D" uid="uid://c8bwvkis2of2n" path="res://assets/personagens/protoboard.png" id="2_r7vrh"]
+[ext_resource type="Script" uid="uid://b2orrt0en57c8" path="res://src/personagens/Protoboard.cs" id="3_imyv0"]
+[ext_resource type="Script" uid="uid://b02a2seh2cwue" path="res://src/personagens/Professor.cs" id="4_w2icd"]
+[ext_resource type="Texture2D" uid="uid://ddwdbin2jenw6" path="res://assets/personagens/marcio.png" id="5_7ysej"]
+[ext_resource type="Script" uid="uid://dvco8gmubt1b" path="res://src/batalha/BatalhaManager.cs" id="6_imyv0"]
+[ext_resource type="Texture2D" uid="uid://c0yragyrtltau" path="res://assets/personagens/protoboard_batalha.png" id="6_r7vrh"]
+[ext_resource type="PackedScene" uid="uid://cqn45ryo15nw8" path="res://src/fases/Laboratório.tscn" id="8_w2icd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_henly"]
+atlas = ExtResource("2_r7vrh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opwvu"]
+atlas = ExtResource("2_r7vrh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltgdy"]
+atlas = ExtResource("2_r7vrh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akhlb"]
+atlas = ExtResource("2_r7vrh")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2apnv"]
+atlas = ExtResource("2_r7vrh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wi6ju"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_henly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opwvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltgdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akhlb")
+}],
+"loop": 1,
+"name": &"Andando",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2apnv")
+}],
+"loop": 1,
+"name": &"Parado",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y2f8h"]
+radius = 12.475384
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m13ap"]
+radius = 56.22277
+
+[node name="Laboratório" type="Node2D" unique_id=156517541]
+
+[node name="Laboratorio" type="Sprite2D" parent="." unique_id=1883875332]
+position = Vector2(570.00006, 295)
+scale = Vector2(1.1718107, 1.200565)
+texture = ExtResource("1_73b72")
+
+[node name="Protoboard" type="AnimatedSprite2D" parent="Laboratorio" unique_id=1424856394 groups=["Player"]]
+position = Vector2(8.699524, 93.23111)
+scale = Vector2(3.306847, 2.889264)
+sprite_frames = SubResource("SpriteFrames_wi6ju")
+animation = &"Andando"
+frame_progress = 0.5924479
+script = ExtResource("3_imyv0")
+Speed = 200.0
+
+[node name="Area2D" type="Area2D" parent="Laboratorio/Protoboard" unique_id=568101438 groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Laboratorio/Protoboard/Area2D" unique_id=2076530387]
+position = Vector2(-0.82432926, -0.84468275)
+shape = SubResource("CircleShape2D_y2f8h")
+
+[node name="Professor" type="Area2D" parent="." unique_id=507268530]
+position = Vector2(575, 278)
+script = ExtResource("4_w2icd")
+
+[node name="Sprite2D" type="Sprite2D" parent="Professor" unique_id=55478825]
+position = Vector2(20.999985, -48)
+scale = Vector2(5.7656245, 3.0156252)
+texture = ExtResource("5_7ysej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Professor" unique_id=10996432]
+position = Vector2(14, 10)
+shape = SubResource("CircleShape2D_m13ap")
+
+[node name="TelaBatalha" type="CanvasLayer" parent="." unique_id=2079082417 node_paths=PackedStringArray("Jogador", "LabelPlacar", "RetratoJogador", "LabelEnunciado", "LabelFeedback", "BotoesAlternativas", "BotaoSair")]
+script = ExtResource("6_imyv0")
+Jogador = NodePath("../Laboratorio/Protoboard")
+LabelPlacar = NodePath("Panel/VBoxContainer/LabelPlacar")
+RetratoJogador = NodePath("Panel/VBoxContainer/Retratos/RetratoJogador")
+TexturaJogadorFalha = ExtResource("6_r7vrh")
+LabelEnunciado = NodePath("Panel/VBoxContainer/LabelEnunciado")
+LabelFeedback = NodePath("Panel/VBoxContainer/LabelFeedback")
+BotoesAlternativas = [NodePath("Panel/VBoxContainer/Botao0"), NodePath("Panel/VBoxContainer/Botao1"), NodePath("Panel/VBoxContainer/Botao2"), NodePath("Panel/VBoxContainer/Botao3")]
+BotaoSair = NodePath("Panel/VBoxContainer/BotaoSair")
+
+[node name="Panel" type="Panel" parent="TelaBatalha" unique_id=2100082467]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TelaBatalha/Panel" unique_id=858670416]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelPlacar" type="Label" parent="TelaBatalha/Panel/VBoxContainer" unique_id=253390450]
+layout_mode = 2
+
+[node name="Retratos" type="HBoxContainer" parent="TelaBatalha/Panel/VBoxContainer" unique_id=1151283044]
+layout_mode = 2
+alignment = 1
+
+[node name="RetratoJogador" type="TextureRect" parent="TelaBatalha/Panel/VBoxContainer/Retratos" unique_id=333290631]
+layout_mode = 2
+texture = ExtResource("6_r7vrh")
+
+[node name="RetratoProfessor" type="TextureRect" parent="TelaBatalha/Panel/VBoxContainer/Retratos" unique_id=2054923315]
+layout_mode = 2
+texture = ExtResource("5_7ysej")
+
+[node name="LabelEnunciado" type="Label" parent="TelaBatalha/Panel/VBoxContainer" unique_id=224592576]
+layout_mode = 2
+
+[node name="LabelFeedback" type="Label" parent="TelaBatalha/Panel/VBoxContainer" unique_id=498144506]
+layout_mode = 2
+
+[node name="Botao0" type="Button" parent="TelaBatalha/Panel/VBoxContainer" unique_id=93608987]
+layout_mode = 2
+
+[node name="Botao1" type="Button" parent="TelaBatalha/Panel/VBoxContainer" unique_id=2092883451]
+layout_mode = 2
+
+[node name="Botao2" type="Button" parent="TelaBatalha/Panel/VBoxContainer" unique_id=1340508362]
+layout_mode = 2
+
+[node name="Botao3" type="Button" parent="TelaBatalha/Panel/VBoxContainer" unique_id=2055475743]
+layout_mode = 2
+
+[node name="BotaoSair" type="Button" parent="TelaBatalha/Panel/VBoxContainer" unique_id=880089108]
+layout_mode = 2
+text = "VOLTAR AO LABORATORIO"
+
+[node name="Laboratório" parent="." unique_id=1864313514 instance=ExtResource("8_w2icd")]
+
+[connection signal="BatalhaIniciada" from="Professor" to="TelaBatalha" method="IniciarBatalha"]
