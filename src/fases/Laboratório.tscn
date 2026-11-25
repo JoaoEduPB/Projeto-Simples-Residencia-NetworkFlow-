@@ -16,6 +16,34 @@
 [ext_resource type="Texture2D" uid="uid://b6qfl6d0eixq2" path="res://assets/cenarios/switch.png" id="14_4pgyn"]
 [ext_resource type="Texture2D" uid="uid://bhxbofailulco" path="res://assets/cenarios/pc.png" id="15_5fqw5"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_12aau"]
+atlas = ExtResource("4_ltgdy")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4ktx"]
+atlas = ExtResource("4_ltgdy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5tqxe"]
+animations = [{
+"frames": [{
+"duration": 1.9,
+"texture": SubResource("AtlasTexture_12aau")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_v4ktx")
+}],
+"loop": 2,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m13ap"]
+radius = 45.276924
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
+size = Vector2(79, 18)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_henly"]
 atlas = ExtResource("2_ltgdy")
 region = Rect2(0, 0, 32, 32)
@@ -65,74 +93,31 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4nby"]
-size = Vector2(8, 24.745316)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_12aau"]
-atlas = ExtResource("4_ltgdy")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v4ktx"]
-atlas = ExtResource("4_ltgdy")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_5tqxe"]
-animations = [{
-"frames": [{
-"duration": 1.9,
-"texture": SubResource("AtlasTexture_12aau")
-}, {
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_v4ktx")
-}],
-"loop": 2,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_m13ap"]
-radius = 45.276924
+size = Vector2(8, 9.606796)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5tqxe"]
-size = Vector2(1181, 126.5)
+size = Vector2(1181, 93)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_srqme"]
 size = Vector2(133, 37)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqjxb"]
-size = Vector2(187, 37)
+size = Vector2(216.5, 104)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mt4a"]
-size = Vector2(1167.0002, 20)
+size = Vector2(1167.0002, 17.000128)
 
 [node name="Laboratório" type="Node2D" unique_id=156517541]
+y_sort_enabled = true
 
 [node name="Laboratorio" type="Sprite2D" parent="." unique_id=1883875332]
 position = Vector2(-849.00006, 317)
 scale = Vector2(1.1718107, 1.200565)
 texture = ExtResource("1_opwvu")
 
-[node name="Protoboard" type="AnimatedSprite2D" parent="." unique_id=1424856394]
-z_index = 1
-texture_filter = 1
-position = Vector2(236, 553)
-scale = Vector2(5, 4.476)
-sprite_frames = SubResource("SpriteFrames_wi6ju")
-animation = &"Andando"
-frame = 1
-frame_progress = 0.04013634
-script = ExtResource("3_akhlb")
-Speed = 200.0
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Protoboard" unique_id=172823124]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Protoboard/CharacterBody2D" unique_id=1978956284]
-visible = false
-position = Vector2(-1.3999996, 2.3726578)
-scale = Vector2(0.99999976, 1)
-shape = SubResource("RectangleShape2D_u4nby")
-
 [node name="Professor" type="Area2D" parent="." unique_id=507268530]
 z_index = 1
+y_sort_enabled = true
 position = Vector2(575, 278)
 script = ExtResource("4_akhlb")
 
@@ -145,20 +130,43 @@ autoplay = "default"
 frame_progress = 0.5326673
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Professor" unique_id=10996432]
-position = Vector2(16, 2)
+position = Vector2(14, 43)
 shape = SubResource("CircleShape2D_m13ap")
+
+[node name="CorpoSolido" type="StaticBody2D" parent="Professor" unique_id=1097818741]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Professor/CorpoSolido" unique_id=87400881]
+position = Vector2(16, 46)
+shape = SubResource("RectangleShape2D_xrivr")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=172823124]
+y_sort_enabled = true
+position = Vector2(236, 553)
+scale = Vector2(5, 4.476)
+script = ExtResource("3_akhlb")
+
+[node name="Protoboard" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1424856394]
+z_index = 1
+texture_filter = 1
+scale = Vector2(0.99999994, 1)
+sprite_frames = SubResource("SpriteFrames_wi6ju")
+animation = &"Andando"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1978956284]
+position = Vector2(-1.4000015, 9.941917)
+scale = Vector2(0.99999976, 1)
+shape = SubResource("RectangleShape2D_u4nby")
 
 [node name="Madeira" type="Node2D" parent="." unique_id=173462883]
 z_index = -1
 position = Vector2(2, -4)
-metadata/_edit_lock_ = true
 
 [node name="posicao1" type="Node2D" parent="Madeira" unique_id=1967396000]
 
 [node name="Sprite2D2" type="Sprite2D" parent="Madeira/posicao1" unique_id=548966178]
 texture_filter = 1
-position = Vector2(34.999992, 303)
-scale = Vector2(4.9999995, 4.9999995)
+position = Vector2(48, 302.25)
+scale = Vector2(4.1874995, 4.765625)
 texture = ExtResource("6_2apnv")
 metadata/_edit_lock_ = true
 
@@ -185,8 +193,8 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D5" type="Sprite2D" parent="Madeira/posicao1" unique_id=878429082]
 texture_filter = 1
-position = Vector2(1153.65, 303)
-scale = Vector2(4.9999995, 4.9999995)
+position = Vector2(1112.8251, 303)
+scale = Vector2(2.448437, 4.9999995)
 texture = ExtResource("6_2apnv")
 metadata/_edit_lock_ = true
 
@@ -216,8 +224,8 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="Madeira/posicao2" unique_id=581436297]
 texture_filter = 1
-position = Vector2(34.999992, 461)
-scale = Vector2(4.9999995, 4.9999995)
+position = Vector2(47.999996, 459)
+scale = Vector2(4.1875, 5.125)
 texture = ExtResource("8_hg5pq")
 metadata/_edit_lock_ = true
 
@@ -244,8 +252,8 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D5" type="Sprite2D" parent="Madeira/posicao2" unique_id=1209456701]
 texture_filter = 1
-position = Vector2(1153.65, 461)
-scale = Vector2(4.9999995, 4.9999995)
+position = Vector2(1112.8251, 461)
+scale = Vector2(2.448437, 4.9999995)
 texture = ExtResource("6_2apnv")
 metadata/_edit_lock_ = true
 
@@ -274,63 +282,62 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="Madeira/posicao3" unique_id=1846105393]
 texture_filter = 1
-position = Vector2(34.999992, 621)
-scale = Vector2(4.9999995, 4.9999995)
+position = Vector2(54.499992, 599.5)
+scale = Vector2(3.7812495, 3.6562512)
 texture = ExtResource("6_2apnv")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Madeira/posicao3" unique_id=538366614]
 texture_filter = 1
-position = Vector2(194.99998, 621.00006)
-scale = Vector2(5, 5)
+position = Vector2(194.99998, 599.5)
+scale = Vector2(5, 3.6562498)
 texture = ExtResource("6_2apnv")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D3" type="Sprite2D" parent="Madeira/posicao3" unique_id=1600017595]
 texture_filter = 1
-position = Vector2(354, 621.00006)
-scale = Vector2(5, 5)
+position = Vector2(354, 600.00006)
+scale = Vector2(5, 3.6874988)
 texture = ExtResource("6_2apnv")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D4" type="Sprite2D" parent="Madeira/posicao3" unique_id=1838862009]
 texture_filter = 1
-position = Vector2(513.715, 621)
-scale = Vector2(5, 5)
+position = Vector2(513.715, 600.5)
+scale = Vector2(5, 3.7187498)
 texture = ExtResource("6_2apnv")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D5" type="Sprite2D" parent="Madeira/posicao3" unique_id=1263340486]
 texture_filter = 1
-position = Vector2(1153.65, 621)
-scale = Vector2(4.9999995, 4.9999995)
+position = Vector2(1115.3251, 601.5)
+scale = Vector2(2.604687, 3.7812495)
 texture = ExtResource("6_2apnv")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D6" type="Sprite2D" parent="Madeira/posicao3" unique_id=1704944795]
 texture_filter = 1
-position = Vector2(993.495, 621)
-scale = Vector2(5, 5)
+position = Vector2(991.7475, 600.5)
+scale = Vector2(5.109217, 3.7187505)
 texture = ExtResource("9_4pgyn")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D7" type="Sprite2D" parent="Madeira/posicao3" unique_id=2102249437]
 texture_filter = 1
-position = Vector2(833.315, 621)
-scale = Vector2(5, 5)
+position = Vector2(833.315, 600)
+scale = Vector2(5, 3.687498)
 texture = ExtResource("6_2apnv")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D8" type="Sprite2D" parent="Madeira/posicao3" unique_id=306904497]
 texture_filter = 1
-position = Vector2(673.2, 621)
-scale = Vector2(5, 5)
+position = Vector2(673.2, 600.5)
+scale = Vector2(5, 3.7187505)
 texture = ExtResource("6_2apnv")
 metadata/_edit_lock_ = true
 
-[node name="Parede" type="Area2D" parent="." unique_id=177839175]
+[node name="Parede" type="StaticBody2D" parent="." unique_id=757999557]
 z_index = -1
-metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Parede" unique_id=2019042952]
 texture_filter = 1
@@ -396,11 +403,11 @@ texture = ExtResource("7_dtcvj")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parede" unique_id=1374270052]
-position = Vector2(585.50006, 39.250004)
+position = Vector2(585.50006, 155.5)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_5tqxe")
 
-[node name="MesaComFlor" type="Area2D" parent="." unique_id=1675298124]
+[node name="MesaComFlor" type="StaticBody2D" parent="." unique_id=1879920814]
 
 [node name="Sprite2D" type="Sprite2D" parent="MesaComFlor" unique_id=65527295]
 texture_filter = 1
@@ -424,7 +431,7 @@ visible = false
 position = Vector2(1080, 188)
 shape = SubResource("RectangleShape2D_srqme")
 
-[node name="Mesa1" type="Area2D" parent="." unique_id=1939566321]
+[node name="Mesa1" type="StaticBody2D" parent="." unique_id=310109766]
 
 [node name="Sprite2D" type="Sprite2D" parent="Mesa1" unique_id=528830637]
 texture_filter = 1
@@ -446,10 +453,10 @@ texture = ExtResource("15_5fqw5")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Mesa1" unique_id=1656400116]
 z_index = 1
-position = Vector2(260.5, 373.5)
+position = Vector2(259, 396)
 shape = SubResource("RectangleShape2D_nqjxb")
 
-[node name="mesa2" type="Area2D" parent="." unique_id=1754173991]
+[node name="mesa2" type="StaticBody2D" parent="." unique_id=294156855]
 
 [node name="Sprite2D" type="Sprite2D" parent="mesa2" unique_id=386333828]
 texture_filter = 1
@@ -465,11 +472,11 @@ scale = Vector2(3, 3)
 texture = ExtResource("14_4pgyn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mesa2" unique_id=1550639471]
-position = Vector2(952, 369.5)
+position = Vector2(947.25, 399.5)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_nqjxb")
 
-[node name="ForaDoCenario" type="Area2D" parent="." unique_id=1776869886]
+[node name="ForaDoCenario" type="StaticBody2D" parent="." unique_id=1146726064]
 position = Vector2(636, 741)
 scale = Vector2(0.99999994, 0.99999994)
 
@@ -479,13 +486,13 @@ scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_1mt4a")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ForaDoCenario" unique_id=568841654]
-position = Vector2(-646.9999, -652.9999)
+position = Vector2(-636.4999, -652.99963)
 rotation = 1.5707964
-scale = Vector2(0.99999964, 0.99999964)
+scale = Vector2(0.9999995, 0.9999995)
 shape = SubResource("RectangleShape2D_1mt4a")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="ForaDoCenario" unique_id=1725392118]
-position = Vector2(528.9999, -660)
+position = Vector2(513, -659.99976)
 rotation = 1.5707964
-scale = Vector2(0.99999964, 0.99999964)
+scale = Vector2(0.9999995, 0.9999995)
 shape = SubResource("RectangleShape2D_1mt4a")

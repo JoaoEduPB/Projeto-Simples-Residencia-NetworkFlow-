@@ -1,32 +1,33 @@
 using Godot;
 
-public partial class Protoboard : AnimatedSprite2D
+public partial class Protoboard : CharacterBody2D // mantenha o mesmo nome da classe do arquivo!
 {
 	[Export] public float Speed = 150.0f;
+	private AnimatedSprite2D _sprite;
+
+	public override void _Ready()
+	{
+		_sprite = GetNode<AnimatedSprite2D>("Protoboard");
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		// Lê as setas do teclado (esquerda, direita, cima, baixo)
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+
+		Velocity = direction * Speed;
+		MoveAndSlide();
 
 		if (direction != Vector2.Zero)
 		{
-			// Move o sprite na direção das setas pressionadas
-			Position += direction * Speed * (float)delta;
-
-			// Toca a animação de andar
-			Play("Andando");
-
-			// Espelha o sprite quando andar para a direita (já que o desenho original olha para a esquerda)
 			if (direction.X != 0)
-			{
-				FlipH = direction.X > 0;
-			}
+				_sprite.FlipH = direction.X > 0;
+
+			_sprite.Play("Andando"); // substitua pelo nome da sua animação de andar
 		}
 		else
 		{
-			// Volta para a animação parado quando nenhuma seta estiver pressionada
-			Play("Parado");
+			_sprite.Play("Parado"); // ou _sprite.Play("idle");
+			_sprite.Frame = 0;
 		}
 	}
 }

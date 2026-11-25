@@ -1,1 +1,5 @@
 res://src/fases/Laboratório.tscn
+res://src/fases/CollisionShape2d.cs
+res://src/personagens/Professor.cs
+res://src/personagens/Protoboard.cs
+res://src/batalha/BatalhaManager.cs
