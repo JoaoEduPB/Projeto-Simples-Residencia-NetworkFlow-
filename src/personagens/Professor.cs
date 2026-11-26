@@ -16,6 +16,9 @@ public partial class Professor : Area2D
 
 	[Export]
 	public int VidaMaxima { get; set; } = 100;
+	
+	[Export(PropertyHint.File, "*.tscn")]
+	public string CenaDestino { get; set; } = "res://src/fases/CenaBatalha.tscn";
 
 	private List<Questao> _todasQuestoesDaCamada = new();
 	private List<Questao> _baralhoDisponivel = new();
@@ -23,20 +26,28 @@ public partial class Professor : Area2D
 
 	public override void _Ready()
 	{
-		AreaEntered += OnAreaEntered;
-		AreaExited += OnAreaExited;
+		BodyEntered += OnBodyEntered;
+		BodyExited += OnBodyExited;
 		CarregarQuestoesDoJson("res://src/dados/questoes.json");
+		GD.Print($"Professor pronto. Monitoring={Monitoring}, Mask={CollisionMask}, CenaDestino='{CenaDestino}'");
 	}
 
 	public override void _Process(double delta)
+{
+	if (_jogadorPerto && Input.IsActionJustPressed("ui_accept"))
 	{
-		if (_jogadorPerto && Input.IsActionJustPressed("ui_accept"))
+		_jogadorPerto = false;
+		PrepararNovaBatalha();
+		GD.Print($"Batalha iniciada com {NomeProfessor}! Questões prontas: {_baralhoDisponivel.Count}");
+		EmitSignal(SignalName.BatalhaIniciada, this);
+
+		var erro = GetTree().ChangeSceneToFile(CenaDestino);
+		if (erro != Error.Ok)
 		{
-			PrepararNovaBatalha();
-			GD.Print($"Batalha iniciada com {NomeProfessor}! Questões prontas: {_baralhoDisponivel.Count}");
-			EmitSignal(SignalName.BatalhaIniciada, this);
+			GD.PrintErr($"Falha ao trocar de cena: {erro}");
 		}
 	}
+}
 
 	private void CarregarQuestoesDoJson(string caminhoArquivo)
 	{
@@ -84,19 +95,21 @@ public partial class Professor : Area2D
 		return escolhida;
 	}
 
-	private void OnAreaEntered(Area2D area)
+	private void OnBodyEntered(Node2D body)
 	{
-		if (area.IsInGroup("Player"))
+		GD.Print($"Entrou: {body.GetPath()} | grupos: {string.Join(", ", body.GetGroups())} | pai: {body.GetParent()?.Name} | grupos do pai: {string.Join(", ", body.GetParent()?.GetGroups() ?? new())}");
+
+		if (body is CharacterBody2D)
 		{
 			_jogadorPerto = true;
 			GD.Print("Encostou no prof! Apertar Enter ou Espaço");
 		}
-			
 	}
 
-	private void OnAreaExited(Area2D area)
+
+	private void OnBodyExited(Node2D body)
 	{
-		if (area.IsInGroup("Player"))
+		if (body.IsInGroup("Player"))
 		{
 			_jogadorPerto = false;
 			GD.Print("Saiu de perto do prof.");
