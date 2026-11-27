@@ -1,10 +1,11 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1795649338
+::res://::1795810739
+GameManager.cs::CSharpScript::1639763637605120323::1795810739::0::1::::<>Node<><>0<>0<><>::
 icon.svg::CompressedTexture2D::1791984528905576099::1795371433::1795371615::1::::<><><>0<>0<>4b69aa95f920df0f3cb7770c3ded0b02<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://assets/::1795371433
 ::res://assets/audio/::1795371433
 ::res://assets/batalha/::1795371433
-::res://assets/cenarios/::1795649320
+::res://assets/cenarios/::1795812789
 ar-condicionado.png::CompressedTexture2D::5853006656085594533::1795649320::1795649340::1::::<><><>0<>0<>7a653d46124cccf45f39822606bbd226<>res://.godot/imported/ar-condicionado.png-a18ee4329499eb758406bf2f5e6fb6b7.ctex::
 camera.png::CompressedTexture2D::2009765379800357875::1795649320::1795649340::1::::<><><>0<>0<>97db8945e898fb95be47ff63d9f00eef<>res://.godot/imported/camera.png-76ea0a07c3ede5f416d9370f0f4acba2.ctex::
 cracked floor.png::CompressedTexture2D::2311190718573756746::1795371433::1795371616::1::::<><><>0<>0<>d32ff41a8dcd8e5210e4d42cf6467c99<>res://.godot/imported/cracked floor.png-2f4836d91fa1284c0a0ce4f1372bb61d.ctex::
@@ -22,6 +23,7 @@ pc.png::CompressedTexture2D::2925309258605870286::1795371433::1795371615::1::::<
 rack.png::CompressedTexture2D::8633494562985136975::1795649320::1795649340::1::::<><><>0<>0<>d9e1cb48e55ec20f981436665ae59df9<>res://.godot/imported/rack.png-0480e729b4b155a1b8543559f798fff5.ctex::
 switch.png::CompressedTexture2D::4595629743233687799::1795371433::1795371615::1::::<><><>0<>0<>3ccccd6365b30411fe2160822cfcc239<>res://.godot/imported/switch.png-ecc8da2c1b9209b476d970005fdd5985.ctex::
 tampa.png::CompressedTexture2D::2341963704381202056::1795371433::1795371615::1::::<><><>0<>0<>9daf026023b85fde688563034a6686ad<>res://.godot/imported/tampa.png-c752371f850d1b0a782db7f658e11ec2.ctex::
+vida_prof.png::CompressedTexture2D::5581646124570622774::1795812789::1795812789::1::::<><><>0<>0<>86f55070c6b039195e5a60bc75aaf861<>res://.godot/imported/vida_prof.png-df3bf6b13e433430b7d3b3ecf07e96ac.ctex::
 wood-floor.png::CompressedTexture2D::461932531016308658::1795371433::1795371615::1::::<><><>0<>0<>4bba4b724a7ef8dbac58a72e2e62f590<>res://.godot/imported/wood-floor.png-576a19c242655e85b8994524936e267e.ctex::
 ::res://assets/esboços/::1795371616
 fase-enlace.png::CompressedTexture2D::9204828900519972547::1795371433::1795371616::1::::<><><>0<>0<>8fd44784365999cc513e3b2183f6b407<>res://.godot/imported/fase-enlace.png-bda4b0754beab4c7c0582f63fb6a0bec.ctex::
@@ -34,17 +36,18 @@ protoboard_batalha_falha.png::CompressedTexture2D::8428404014300153967::17953714
 ::res://assets/ui/::1795371433
 ::res://src/::1795371433
 ::res://src/autoload/::1795371433
-::res://src/batalha/::1795377522
-BatalhaManager.cs::CSharpScript::254066641960949129::1795377522::0::1::::<>CanvasLayer<><>0<>0<><>::
-::res://src/dados/::1795377522
-Questao.cs::CSharpScript::8547207266910284076::1795377522::0::1::::<><><>0<>0<><>::
-questoes.json::JSON::-1::1795371433::0::1::::<><><>0<>0<><>::
-::res://src/fases/::1795649320
-CollisionShape2d.cs::CSharpScript::6105226387605492127::1795649320::0::1::::<>CollisionShape2D<><>0<>0<><>::
+::res://src/batalha/::1795812484
+BatalhaManager.cs::CSharpScript::254066641960949129::1795812484::0::1::::<>CanvasLayer<><>0<>0<><>::
+::res://src/dados/::1795809605
+Questao.cs::CSharpScript::8547207266910284076::1795809605::0::1::::<><><>0<>0<><>::
+questoes.json::JSON::-1::1795808587::0::1::::<><><>0<>0<><>::
+::res://src/fases/::1795812752
+CenaBatalha.tscn::PackedScene::3506061188460054704::1795812752::0::1::::<><><>0<>0<><>::uid://dvco8gmubt1b::::res://src/batalha/BatalhaManager.cs<>uid://c0yragyrtltau::::res://assets/personagens/protoboard_batalha.png<>uid://dct2g2c5go8mo::::res://assets/cenarios/parede com fios.png<>uid://1220gsjq100x::::res://assets/cenarios/parede.png<>uid://gt07xi2k637k::::res://assets/cenarios/wood-floor.png<>uid://37f55md8nhv1::::res://assets/cenarios/paredewifi.png<>uid://ddwdbin2jenw6::::res://assets/personagens/marcio.png
+CollisionShape2d.cs::CSharpScript::6105226387605492127::1795649320::0::1::::<>CharacterBody2D<><>0<>0<><>::
 Laboratório.tscn::PackedScene::5924515073649165713::1795649320::0::1::::<><><>0<>0<><>::uid://f525gqf132jh::::res://assets/cenarios/Laboratorio.png<>uid://c8bwvkis2of2n::::res://assets/personagens/protoboard.png<>uid://b2orrt0en57c8::::res://src/personagens/Protoboard.cs<>uid://b02a2seh2cwue::::res://src/personagens/Professor.cs<>uid://ddwdbin2jenw6::::res://assets/personagens/marcio.png<>uid://gt07xi2k637k::::res://assets/cenarios/wood-floor.png<>uid://dnqj0r2v4fxq6::::res://assets/cenarios/mesa.png<>uid://1220gsjq100x::::res://assets/cenarios/parede.png<>uid://dct2g2c5go8mo::::res://assets/cenarios/parede com fios.png<>uid://76s8dldjy4ks::::res://assets/cenarios/cracked floor.png<>uid://37f55md8nhv1::::res://assets/cenarios/paredewifi.png<>uid://8mp2g4aijl0c::::res://assets/cenarios/tampa.png<>uid://va4gtpm8j8hg::::res://assets/cenarios/mesa com flor.png<>uid://b6qfl6d0eixq2::::res://assets/cenarios/switch.png<>uid://bhxbofailulco::::res://assets/cenarios/pc.png
 laboratóriov2.tscn::PackedScene::4453659662499954588::1795377522::0::1::::<><><>0<>0<><>::uid://f525gqf132jh::::res://assets/cenarios/Laboratorio.png<>uid://c8bwvkis2of2n::::res://assets/personagens/protoboard.png<>uid://b2orrt0en57c8::::res://src/personagens/Protoboard.cs<>uid://b02a2seh2cwue::::res://src/personagens/Professor.cs<>uid://ddwdbin2jenw6::::res://assets/personagens/marcio.png<>uid://dvco8gmubt1b::::res://src/batalha/BatalhaManager.cs<>uid://c0yragyrtltau::::res://assets/personagens/protoboard_batalha.png<>uid://cqn45ryo15nw8::::res://src/fases/Laboratório.tscn
-laboratóriov3.tscn::PackedScene::5905599522818394011::1795649320::0::1::::<><><>0<>0<><>::uid://f525gqf132jh::::res://assets/cenarios/Laboratorio.png<>uid://b02a2seh2cwue::::res://src/personagens/Professor.cs<>uid://ddwdbin2jenw6::::res://assets/personagens/marcio.png<>uid://b2orrt0en57c8::::res://src/personagens/Protoboard.cs<>uid://c8bwvkis2of2n::::res://assets/personagens/protoboard.png<>uid://gt07xi2k637k::::res://assets/cenarios/wood-floor.png<>uid://76s8dldjy4ks::::res://assets/cenarios/cracked floor.png<>uid://8mp2g4aijl0c::::res://assets/cenarios/tampa.png<>uid://1220gsjq100x::::res://assets/cenarios/parede.png<>uid://dct2g2c5go8mo::::res://assets/cenarios/parede com fios.png<>uid://37f55md8nhv1::::res://assets/cenarios/paredewifi.png<>uid://va4gtpm8j8hg::::res://assets/cenarios/mesa com flor.png<>uid://dnqj0r2v4fxq6::::res://assets/cenarios/mesa.png<>uid://b6qfl6d0eixq2::::res://assets/cenarios/switch.png<>uid://bhxbofailulco::::res://assets/cenarios/pc.png
-::res://src/personagens/::1795649320
-Professor.cs::CSharpScript::4196929142392710820::1795649320::0::1::::<>Area2D<><>0<>0<><>::
-Protoboard.cs::CSharpScript::4311484334614318821::1795649320::0::1::::<>AnimatedSprite2D<><>0<>0<><>::
+laboratóriov3.tscn::PackedScene::5905599522818394011::1795810766::0::1::::<><><>0<>0<><>::uid://b02a2seh2cwue::::res://src/personagens/Professor.cs<>uid://ddwdbin2jenw6::::res://assets/personagens/marcio.png<>uid://b2orrt0en57c8::::res://src/personagens/Protoboard.cs<>uid://c8bwvkis2of2n::::res://assets/personagens/protoboard.png<>uid://gt07xi2k637k::::res://assets/cenarios/wood-floor.png<>uid://76s8dldjy4ks::::res://assets/cenarios/cracked floor.png<>uid://8mp2g4aijl0c::::res://assets/cenarios/tampa.png<>uid://1220gsjq100x::::res://assets/cenarios/parede.png<>uid://dct2g2c5go8mo::::res://assets/cenarios/parede com fios.png<>uid://37f55md8nhv1::::res://assets/cenarios/paredewifi.png<>uid://va4gtpm8j8hg::::res://assets/cenarios/mesa com flor.png<>uid://dnqj0r2v4fxq6::::res://assets/cenarios/mesa.png<>uid://b6qfl6d0eixq2::::res://assets/cenarios/switch.png<>uid://bhxbofailulco::::res://assets/cenarios/pc.png
+::res://src/personagens/::1795810766
+Professor.cs::CSharpScript::4196929142392710820::1795810766::0::1::::<>Area2D<><>0<>0<><>::
+Protoboard.cs::CSharpScript::4311484334614318821::1795649320::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://src/ui/::1795371433

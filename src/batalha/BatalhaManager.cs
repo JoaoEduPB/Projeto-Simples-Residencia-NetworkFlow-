@@ -2,167 +2,196 @@ using Godot;
 
 public partial class BatalhaManager : CanvasLayer
 {
-    [Export] public Node2D Jogador;
-    [Export] public Label LabelPlacar;
-    [Export] public TextureRect RetratoJogador;
-    [Export] public Texture2D TexturaJogadorFalha;
-    [Export] public Label LabelEnunciado;
-    [Export] public Label LabelFeedback;
-    [Export] public Button[] BotoesAlternativas;
-    [Export] public Button BotaoSair;
+	[Export] public Node2D Jogador;
+	[Export] public Label LabelPlacar; // agora só o nome do professor
+	[Export] public ProgressBar BarraProfessor;
+	[Export] public AnimatedSprite2D AnimJogador;
+	[Export] public AnimatedSprite2D AnimProfessor;
+	[Export] public ProgressBar BarraJogador;
+	[Export] public Label LabelEnunciado;
+	[Export] public Label LabelFeedback;
+	[Export] public Button[] BotoesAlternativas;
+	[Export] public Button BotaoSair;
 
-    private Texture2D _texturaJogadorNormal;
-    private Professor _professorAtual;
-    private Questao _questaoAtual;
-    private int _vidaProfessor;
-    private int _vidaJogador = 100;
-    private int _combo = 0;
+	[Export] public int AcertosParaVencer = 10;
+	[Export] public int ErrosPermitidos = 3;
+	private string _nomeProfessor;
+	private Questao _questaoAtual;
+	private int _vidaProfessor;
+	private int _vidaJogador;
 
-    public override void _Ready()
-    {
-        Visible = false; // Começa escondida durante a exploração
-        BotaoSair.Visible = false;
+	public override void _Ready()
+	{
+		Visible = true;
 
-        if (RetratoJogador != null)
-            _texturaJogadorNormal = RetratoJogador.Texture;
+		if (LabelEnunciado == null || LabelFeedback == null || BotaoSair == null)
+		{
+			GD.PrintErr("BatalhaManager: ligue LabelEnunciado, LabelFeedback e BotaoSair no Inspector.");
+			return;
+		}
 
-        for (int i = 0; i < BotoesAlternativas.Length; i++)
-        {
-            int indice = i;
-            BotoesAlternativas[i].Pressed += () => AoClicarAlternativa(indice);
-        }
+		if (BotoesAlternativas == null || BotoesAlternativas.Length == 0)
+		{
+			GD.PrintErr("BatalhaManager: o array BotoesAlternativas está vazio no Inspector.");
+			return;
+		}
 
-        BotaoSair.Pressed += FecharBatalha;
-    }
+		if (BarraProfessor == null || BarraJogador == null)
+			GD.PrintErr("BatalhaManager: ligue BarraProfessor e BarraJogador no Inspector.");
 
-    public void IniciarBatalha(Professor professor)
-    {
-        _professorAtual = professor;
-        _vidaProfessor = professor.VidaMaxima;
-        _vidaJogador = 100;
-        _combo = 0;
+		BotaoSair.Visible = false;
+		BotaoSair.Pressed += FecharBatalha;
 
-        if (RetratoJogador != null && _texturaJogadorNormal != null)
-            RetratoJogador.Texture = _texturaJogadorNormal;
+		for (int i = 0; i < BotoesAlternativas.Length; i++)
+		{
+			int indice = i;
+			BotoesAlternativas[i].Pressed += () => AoClicarAlternativa(indice);
+		}
 
-        if (Jogador != null)
-            Jogador.SetPhysicsProcess(false); // Trava o Protoboard enquanto responde
+		var gm = GameManager.Instance;
+		if (gm == null)
+		{
+			GD.PrintErr("BatalhaManager: GameManager não encontrado. Registre-o em Project Settings > Globals > Autoload.");
+			return;
+		}
 
-        BotaoSair.Visible = false;
-        LabelFeedback.Text = $"Desafio iniciado contra {professor.NomeProfessor}!";
-        Visible = true;
+		if (gm.ConsumirBatalhaPendente())
+			IniciarBatalha();
+		else
+			GD.Print("BatalhaManager: nenhuma batalha pendente.");
+	}
 
-        CarregarProximaPergunta();
-    }
+	public void IniciarBatalha()
+	{
+		_nomeProfessor = GameManager.Instance.NomeProfessor;
+		_vidaProfessor = AcertosParaVencer;
+		_vidaJogador = ErrosPermitidos;
 
-    private void CarregarProximaPergunta()
-    {
-        AtualizarPlacar();
-        _questaoAtual = _professorAtual.SortearProximaQuestao();
+		if (LabelPlacar != null)
+			LabelPlacar.Text = _nomeProfessor;
 
-        if (_questaoAtual == null)
-        {
-            EncerrarBatalha("Fim das questões do banco! Empate técnico.");
-            return;
-        }
+		if (BarraProfessor != null)
+		{
+			BarraProfessor.MaxValue = AcertosParaVencer;
+			BarraProfessor.Value = AcertosParaVencer;
+		}
 
-        if (RetratoJogador != null && _texturaJogadorNormal != null)
-            RetratoJogador.Texture = _texturaJogadorNormal;
+		if (BarraJogador != null)
+		{
+			BarraJogador.MaxValue = ErrosPermitidos;
+			BarraJogador.Value = ErrosPermitidos;
+		}
 
-        LabelEnunciado.Text = $"[{_questaoAtual.Dificuldade}] {_questaoAtual.Enunciado}";
-        DefinirBotoesAtivos(true);
+		Tocar(AnimJogador, "idle");
+		Tocar(AnimProfessor, "idle");
 
-        for (int i = 0; i < BotoesAlternativas.Length; i++)
-        {
-            if (i < _questaoAtual.Alternativas.Length)
-            {
-                BotoesAlternativas[i].Text = _questaoAtual.Alternativas[i];
-                BotoesAlternativas[i].Visible = true;
-            }
-            else
-            {
-                BotoesAlternativas[i].Visible = false;
-            }
-        }
-    }
+		if (Jogador != null)
+			Jogador.SetPhysicsProcess(false);
 
-    private async void AoClicarAlternativa(int indiceEscolhido)
-    {
-        if (_questaoAtual == null) return;
+		BotaoSair.Visible = false;
+		LabelFeedback.Text = "";
+		Visible = true;
 
-        DefinirBotoesAtivos(false);
+		CarregarProximaPergunta();
+	}
 
-        if (indiceEscolhido == _questaoAtual.IndiceCorreta)
-        {
-            _combo++;
-            int danoNoProfessor = 15 + (_combo * 5);
-            _vidaProfessor = Mathf.Max(0, _vidaProfessor - danoNoProfessor);
-            LabelFeedback.Text = $"Acertou! Combo {_combo}x (-{danoNoProfessor} HP no professor)";
-        }
-        else
-        {
-            _combo = 0;
-            int danoNoJogador = _questaoAtual.Dificuldade switch
-            {
-                Dificuldade.Facil => 10,
-                Dificuldade.Medio => 15,
-                Dificuldade.Dificil => 25,
-                Dificuldade.Impossivel => 35,
-                _ => 15
-            };
-            _vidaJogador = Mathf.Max(0, _vidaJogador - danoNoJogador);
+	private void CarregarProximaPergunta()
+	{
+		_questaoAtual = GameManager.Instance.ProximaQuestao();
 
-            if (RetratoJogador != null && TexturaJogadorFalha != null)
-                RetratoJogador.Texture = TexturaJogadorFalha;
+		if (_questaoAtual == null)
+		{
+			EncerrarBatalha("Acabaram as questões! Empate técnico.");
+			return;
+		}
 
-            string respostaCerta = _questaoAtual.Alternativas[_questaoAtual.IndiceCorreta];
-            LabelFeedback.Text = $"Errou! (-{danoNoJogador} HP) | Correta: {respostaCerta}";
-        }
+		Tocar(AnimJogador, "idle");
+		Tocar(AnimProfessor, "idle");
 
-        AtualizarPlacar();
+		LabelFeedback.Text = "";
+		LabelEnunciado.Text = $"[{_questaoAtual.Dificuldade}] {_questaoAtual.Enunciado}";
+		DefinirBotoesAtivos(true);
 
-        // Pausa de 1.2s para ler o resultado antes da próxima pergunta
-        await ToSignal(GetTree().CreateTimer(1.2), SceneTreeTimer.SignalName.Timeout);
+		for (int i = 0; i < BotoesAlternativas.Length; i++)
+		{
+			if (i < _questaoAtual.Alternativas.Length)
+			{
+				BotoesAlternativas[i].Text = _questaoAtual.Alternativas[i];
+				BotoesAlternativas[i].Visible = true;
+			}
+			else
+			{
+				BotoesAlternativas[i].Visible = false;
+			}
+		}
+	}
 
-        if (_vidaProfessor <= 0)
-        {
-            EncerrarBatalha($"Vitória! Você derrotou {_professorAtual.NomeProfessor}!");
-        }
-        else if (_vidaJogador <= 0)
-        {
-            EncerrarBatalha("Derrota! Revise a camada e tente novamente.");
-        }
-        else
-        {
-            CarregarProximaPergunta();
-        }
-    }
+	private async void AoClicarAlternativa(int indiceEscolhido)
+	{
+		if (_questaoAtual == null) return;
 
-    private void AtualizarPlacar()
-    {
-        LabelPlacar.Text =
-            $"{_professorAtual.NomeProfessor}: {_vidaProfessor} HP   |   Protoboard: {_vidaJogador} HP   |   Combo: {_combo}x";
-    }
+		DefinirBotoesAtivos(false);
 
-    private void EncerrarBatalha(string mensagemFinal)
-    {
-        LabelEnunciado.Text = mensagemFinal;
-        foreach (var botao in BotoesAlternativas)
-            botao.Visible = false;
+		if (indiceEscolhido == _questaoAtual.IndiceCorreta)
+		{
+			_vidaProfessor--;
+			LabelFeedback.Text = "Acertou!";
+			AnimarBarra(BarraProfessor, _vidaProfessor);
+			Tocar(AnimProfessor, "dano");
+		}
+		else
+		{
+			_vidaJogador--;
+			LabelFeedback.Text = "Errou!";
+			AnimarBarra(BarraJogador, _vidaJogador);
+			Tocar(AnimJogador, "falha");
+		}
 
-        BotaoSair.Visible = true;
-    }
+		await ToSignal(GetTree().CreateTimer(1.2), SceneTreeTimer.SignalName.Timeout);
 
-    private void FecharBatalha()
-    {
-        Visible = false;
-        if (Jogador != null)
-            Jogador.SetPhysicsProcess(true); // Libera o movimento do Protoboard
-    }
+		if (_vidaProfessor <= 0)
+			EncerrarBatalha($"Vitória! Você derrotou {_nomeProfessor}!");
+		else if (_vidaJogador <= 0)
+			EncerrarBatalha("Derrota! Revise a camada e tente novamente.");
+		else
+			CarregarProximaPergunta();
+	}
 
-    private void DefinirBotoesAtivos(bool ativo)
-    {
-        foreach (var botao in BotoesAlternativas)
-            botao.Disabled = !ativo;
-    }
+	private void AnimarBarra(ProgressBar barra, int valor)
+	{
+		if (barra == null) return;
+		CreateTween().TweenProperty(barra, "value", (double)valor, 0.3);
+	}
+
+	private void EncerrarBatalha(string mensagemFinal)
+	{
+		LabelEnunciado.Text = mensagemFinal;
+		LabelFeedback.Text = "";
+		foreach (var botao in BotoesAlternativas)
+			botao.Visible = false;
+
+		BotaoSair.Visible = true;
+	}
+
+	private void FecharBatalha()
+	{
+		string cena = GameManager.Instance?.CenaRetorno;
+
+		if (!string.IsNullOrEmpty(cena))
+			GetTree().ChangeSceneToFile(cena);
+		else
+			Visible = false;
+	}
+
+	private void Tocar(AnimatedSprite2D anim, string nome)
+	{
+		if (anim?.SpriteFrames != null && anim.SpriteFrames.HasAnimation(nome))
+			anim.Play(nome);
+	}
+
+	private void DefinirBotoesAtivos(bool ativo)
+	{
+		foreach (var botao in BotoesAlternativas)
+			botao.Disabled = !ativo;
+	}
 }

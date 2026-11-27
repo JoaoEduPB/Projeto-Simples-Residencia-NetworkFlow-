@@ -1,11 +1,34 @@
 [gd_scene format=3 uid="uid://bp7mky0w0usbw"]
 
+[ext_resource type="Script" uid="uid://dvco8gmubt1b" path="res://src/batalha/BatalhaManager.cs" id="1_6ao3t"]
 [ext_resource type="Texture2D" uid="uid://c0yragyrtltau" path="res://assets/personagens/protoboard_batalha.png" id="1_k2ad4"]
 [ext_resource type="Texture2D" uid="uid://dct2g2c5go8mo" path="res://assets/cenarios/parede com fios.png" id="2_e1fal"]
+[ext_resource type="Script" uid="uid://cac8gff5g1uk" path="res://Palco.cs" id="2_lbe5t"]
 [ext_resource type="Texture2D" uid="uid://1220gsjq100x" path="res://assets/cenarios/parede.png" id="2_qqj7q"]
 [ext_resource type="Texture2D" uid="uid://gt07xi2k637k" path="res://assets/cenarios/wood-floor.png" id="3_854lv"]
+[ext_resource type="Texture2D" uid="uid://dsc1t2u3y6ck2" path="res://assets/personagens/protoboard_batalha_falha.png" id="3_om0nc"]
 [ext_resource type="Texture2D" uid="uid://37f55md8nhv1" path="res://assets/cenarios/paredewifi.png" id="4_2nt65"]
 [ext_resource type="Texture2D" uid="uid://ddwdbin2jenw6" path="res://assets/personagens/marcio.png" id="6_2nt65"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbe5t"]
+bg_color = Color(0.9098039, 0.45490196, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_om0nc"]
+bg_color = Color(1, 0.827451, 0.21176471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xvr7"]
+bg_color = Color(0.9098039, 0.45490196, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6rs0m"]
+bg_color = Color(1, 0.827451, 0.21176471, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xvr7"]
+atlas = ExtResource("3_om0nc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rs0m"]
+atlas = ExtResource("3_om0nc")
+region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jh8rj"]
 atlas = ExtResource("1_k2ad4")
@@ -19,32 +42,43 @@ region = Rect2(0, 32, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_2xvr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rs0m")
+}],
+"loop": 1,
+"name": &"erro",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jh8rj")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qqj7q")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"normal",
 "speed": 3.0
 }]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ao3t"]
-atlas = ExtResource("6_2nt65")
-region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2c1q8"]
 atlas = ExtResource("6_2nt65")
 region = Rect2(0, 32, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ao3t"]
+atlas = ExtResource("6_2nt65")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_hj3k0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6ao3t")
+"texture": SubResource("AtlasTexture_2c1q8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2c1q8")
+"texture": SubResource("AtlasTexture_6ao3t")
 }],
 "loop": 1,
 "name": &"default",
@@ -53,16 +87,171 @@ animations = [{
 
 [node name="CenaBatalha" type="Node2D" unique_id=1717779487]
 
-[node name="Proto" type="Node2D" parent="." unique_id=1314622434]
-z_index = 1
+[node name="BatalhaManager" type="CanvasLayer" parent="." unique_id=1350663906 node_paths=PackedStringArray("LabelPlacar", "BarraProfessor", "AnimJogador", "AnimProfessor", "BarraJogador", "LabelEnunciado", "LabelFeedback", "BotoesAlternativas", "BotaoSair")]
+script = ExtResource("1_6ao3t")
+LabelPlacar = NodePath("Control/Margem/layout/topo/LabelPlacar")
+BarraProfessor = NodePath("Control/Margem/layout/topo/BarraProf")
+AnimJogador = NodePath("Control/Margem/layout/meio/Proto/AnimatedSprite2D")
+AnimProfessor = NodePath("Control/Margem/layout/meio/Professor/AnimatedSprite2D")
+BarraJogador = NodePath("Control/Margem/layout/topo/BarraProto")
+LabelEnunciado = NodePath("Control/Margem/layout/Baixo/LabelEnunciado")
+LabelFeedback = NodePath("Control/Margem/layout/meio/LabelFeedback")
+BotoesAlternativas = [NodePath("Control/Margem/layout/Baixo/GridContainer/Alt1"), NodePath("Control/Margem/layout/Baixo/GridContainer/Alt2"), NodePath("Control/Margem/layout/Baixo/GridContainer/alt3"), NodePath("Control/Margem/layout/Baixo/GridContainer/alt4")]
+BotaoSair = NodePath("Control/Margem/layout/Baixo/BotaoSair")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Proto" unique_id=1109049287]
+[node name="Control" type="Control" parent="BatalhaManager" unique_id=1254180785]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margem" type="MarginContainer" parent="BatalhaManager/Control" unique_id=1904567197]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="layout" type="VBoxContainer" parent="BatalhaManager/Control/Margem" unique_id=564916621]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="topo" type="HBoxContainer" parent="BatalhaManager/Control/Margem/layout" unique_id=1954095555]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="BarraProto" type="ProgressBar" parent="BatalhaManager/Control/Margem/layout/topo" unique_id=1248684476]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_lbe5t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_om0nc")
+max_value = 3.0
+value = 3.0
+show_percentage = false
+
+[node name="LabelPlacar" type="Label" parent="BatalhaManager/Control/Margem/layout/topo" unique_id=1212906462]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "professor"
+horizontal_alignment = 1
+
+[node name="BarraProf" type="ProgressBar" parent="BatalhaManager/Control/Margem/layout/topo" unique_id=734949806]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_2xvr7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6rs0m")
+max_value = 10.0
+value = 10.0
+fill_mode = 1
+show_percentage = false
+
+[node name="meio" type="HBoxContainer" parent="BatalhaManager/Control/Margem/layout" unique_id=1190518782]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Proto" type="Control" parent="BatalhaManager/Control/Margem/layout/meio" unique_id=1945610299]
+custom_minimum_size = Vector2(32, 32)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_lbe5t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BatalhaManager/Control/Margem/layout/meio/Proto" unique_id=1109049287]
 texture_filter = 1
-position = Vector2(297, 256)
+position = Vector2(238, 168)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_5tqxe")
+animation = &"normal"
+autoplay = "normal"
+
+[node name="LabelFeedback" type="Label" parent="BatalhaManager/Control/Margem/layout/meio" unique_id=1585345456]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Professor" type="Control" parent="BatalhaManager/Control/Margem/layout/meio" unique_id=1942202124]
+custom_minimum_size = Vector2(7, 7)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_lbe5t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BatalhaManager/Control/Margem/layout/meio/Professor" unique_id=1849895581]
+z_index = 1
+texture_filter = 1
+position = Vector2(186, 149)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_hj3k0")
 autoplay = "default"
-frame_progress = 0.65388983
+frame_progress = 0.17715074
+
+[node name="Baixo" type="VBoxContainer" parent="BatalhaManager/Control/Margem/layout" unique_id=1581452985]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="LabelEnunciado" type="Label" parent="BatalhaManager/Control/Margem/layout/Baixo" unique_id=112475291]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="GridContainer" type="GridContainer" parent="BatalhaManager/Control/Margem/layout/Baixo" unique_id=843241312]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="Alt1" type="Button" parent="BatalhaManager/Control/Margem/layout/Baixo/GridContainer" unique_id=1944190499]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+clip_text = true
+
+[node name="Alt2" type="Button" parent="BatalhaManager/Control/Margem/layout/Baixo/GridContainer" unique_id=692454294]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+clip_text = true
+
+[node name="alt3" type="Button" parent="BatalhaManager/Control/Margem/layout/Baixo/GridContainer" unique_id=92138904]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+clip_text = true
+
+[node name="alt4" type="Button" parent="BatalhaManager/Control/Margem/layout/Baixo/GridContainer" unique_id=68322892]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+clip_text = true
+
+[node name="BotaoSair" type="Button" parent="BatalhaManager/Control/Margem/layout/Baixo" unique_id=133688259]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+text = "sair"
+autowrap_mode = 3
 
 [node name="Parede" type="Node2D" parent="." unique_id=309379049]
 metadata/_edit_lock_ = true
@@ -139,14 +328,3 @@ position = Vector2(1091, 391.328)
 scale = Vector2(8, 4.583)
 texture = ExtResource("3_854lv")
 metadata/_edit_lock_ = true
-
-[node name="Professor" type="Node2D" parent="." unique_id=48605573]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Professor" unique_id=1849895581]
-z_index = 1
-texture_filter = 1
-position = Vector2(873, 248)
-scale = Vector2(8, 8)
-sprite_frames = SubResource("SpriteFrames_hj3k0")
-autoplay = "default"
-frame_progress = 0.17715074

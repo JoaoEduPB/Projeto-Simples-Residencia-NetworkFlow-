@@ -1,13 +1,7 @@
 using Godot;
-using System.Collections.Generic;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 public partial class Professor : Area2D
 {
-	[Signal]
-	public delegate void BatalhaIniciadaEventHandler(Professor professor);
-
 	[Export]
 	public string NomeProfessor { get; set; } = "Prof. Marcus";
 
@@ -16,100 +10,57 @@ public partial class Professor : Area2D
 
 	[Export]
 	public int VidaMaxima { get; set; } = 100;
-	
+
 	[Export(PropertyHint.File, "*.tscn")]
 	public string CenaDestino { get; set; } = "res://src/fases/CenaBatalha.tscn";
 
-	private List<Questao> _todasQuestoesDaCamada = new();
-	private List<Questao> _baralhoDisponivel = new();
 	private bool _jogadorPerto = false;
 
 	public override void _Ready()
 	{
 		BodyEntered += OnBodyEntered;
 		BodyExited += OnBodyExited;
-		CarregarQuestoesDoJson("res://src/dados/questoes.json");
-		GD.Print($"Professor pronto. Monitoring={Monitoring}, Mask={CollisionMask}, CenaDestino='{CenaDestino}'");
 	}
 
+	// ALTERADO: não carrega mais o JSON nem sorteia; delega tudo ao GameManager
 	public override void _Process(double delta)
-{
-	if (_jogadorPerto && Input.IsActionJustPressed("ui_accept"))
 	{
-		_jogadorPerto = false;
-		PrepararNovaBatalha();
-		GD.Print($"Batalha iniciada com {NomeProfessor}! Questões prontas: {_baralhoDisponivel.Count}");
-		EmitSignal(SignalName.BatalhaIniciada, this);
+		if (!_jogadorPerto || !Input.IsActionJustPressed("ui_accept"))
+			return;
 
-		var erro = GetTree().ChangeSceneToFile(CenaDestino);
-		if (erro != Error.Ok)
+		if (GameManager.Instance == null)
 		{
-			GD.PrintErr($"Falha ao trocar de cena: {erro}");
-		}
-	}
-}
-
-	private void CarregarQuestoesDoJson(string caminhoArquivo)
-	{
-		if (!FileAccess.FileExists(caminhoArquivo))
-		{
-			GD.PrintErr($"Arquivo não encontrado: {caminhoArquivo}");
+			GD.PrintErr("GameManager não encontrado. Registre-o em Project Settings > Globals > Autoload.");
 			return;
 		}
 
-		string conteudoJson = FileAccess.GetFileAsString(caminhoArquivo);
-		var opcoes = new JsonSerializerOptions
-		{
-			PropertyNameCaseInsensitive = true,
-			Converters = { new JsonStringEnumConverter() }
-		};
+		// NOVO: guarda a cena atual para o botão Sair da batalha voltar para ela
+		string cenaAtual = GetTree().CurrentScene.SceneFilePath;
 
-		var bancoCompleto = JsonSerializer.Deserialize<Dictionary<string, List<Questao>>>(conteudoJson, opcoes);
+		if (!GameManager.Instance.IniciarBatalha(NomeProfessor, CamadaChave, VidaMaxima, cenaAtual))
+			return;
 
-		if (bancoCompleto != null && bancoCompleto.TryGetValue(CamadaChave, out var questoes))
-		{
-			_todasQuestoesDaCamada = questoes;
-		}
-		else
-		{
-			GD.PrintErr($"Camada '{CamadaChave}' não encontrada no JSON.");
-		}
+		_jogadorPerto = false;
+		GD.Print($"Batalha iniciada com {NomeProfessor}!");
+
+		var erro = GetTree().ChangeSceneToFile(CenaDestino);
+		if (erro != Error.Ok)
+			GD.PrintErr($"Falha ao trocar de cena: {erro}");
 	}
 
-	public void PrepararNovaBatalha()
-	{
-		_baralhoDisponivel = new List<Questao>(_todasQuestoesDaCamada);
-	}
-
-	public Questao SortearProximaQuestao()
-	{
-		if (_baralhoDisponivel.Count == 0)
-		{
-			return null;
-		}
-
-		int indiceAleatorio = GD.RandRange(0, _baralhoDisponivel.Count - 1);
-		Questao escolhida = _baralhoDisponivel[indiceAleatorio];
-		_baralhoDisponivel.RemoveAt(indiceAleatorio);
-
-		return escolhida;
-	}
-
+	// ALTERADO: mesmo critério na entrada e na saída (body is Protoboard)
 	private void OnBodyEntered(Node2D body)
 	{
-		GD.Print($"Entrou: {body.GetPath()} | grupos: {string.Join(", ", body.GetGroups())} | pai: {body.GetParent()?.Name} | grupos do pai: {string.Join(", ", body.GetParent()?.GetGroups() ?? new())}");
-
-		if (body is CharacterBody2D)
+		if (body is Protoboard)
 		{
 			_jogadorPerto = true;
-			GD.Print("Encostou no prof! Apertar Enter ou Espaço");
+			GD.Print("Encostou no prof! Aperte Enter ou Espaço.");
 		}
 	}
-
 
 	private void OnBodyExited(Node2D body)
 	{
-		if (body.IsInGroup("Player"))
+		if (body is Protoboard)
 		{
 			_jogadorPerto = false;
 			GD.Print("Saiu de perto do prof.");
