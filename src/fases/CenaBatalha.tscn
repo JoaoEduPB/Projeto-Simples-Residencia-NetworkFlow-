@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dsc1t2u3y6ck2" path="res://assets/personagens/protoboard_batalha_falha.png" id="3_om0nc"]
 [ext_resource type="Texture2D" uid="uid://37f55md8nhv1" path="res://assets/cenarios/paredewifi.png" id="4_2nt65"]
 [ext_resource type="Texture2D" uid="uid://ddwdbin2jenw6" path="res://assets/personagens/marcio.png" id="6_2nt65"]
+[ext_resource type="Texture2D" uid="uid://vm4svk8egsbm" path="res://assets/personagens/marcio_erro.png" id="6_om0nc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbe5t"]
 bg_color = Color(0.9098039, 0.45490196, 0, 1)
@@ -49,7 +50,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"erro",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -63,6 +64,14 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3j7fl"]
+atlas = ExtResource("6_om0nc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6htb"]
+atlas = ExtResource("6_om0nc")
+region = Rect2(0, 32, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2c1q8"]
 atlas = ExtResource("6_2nt65")
 region = Rect2(0, 32, 32, 32)
@@ -75,29 +84,43 @@ region = Rect2(0, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_3j7fl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6htb")
+}],
+"loop": 1,
+"name": &"erro",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2c1q8")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6ao3t")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"normal",
 "speed": 3.0
 }]
 
 [node name="CenaBatalha" type="Node2D" unique_id=1717779487]
 
-[node name="BatalhaManager" type="CanvasLayer" parent="." unique_id=1350663906 node_paths=PackedStringArray("LabelPlacar", "BarraProfessor", "AnimJogador", "AnimProfessor", "BarraJogador", "LabelEnunciado", "LabelFeedback", "BotoesAlternativas", "BotaoSair")]
+[node name="BatalhaManager" type="CanvasLayer" parent="." unique_id=1350663906 node_paths=PackedStringArray("LabelPlacar", "BarraProfessor", "BarraJogador", "LabelEnunciado", "LabelFeedback", "LabelTempo", "LabelProgresso", "FundoBaixo", "AnimacaoJogador", "AnimacaoProfessor", "BotoesAlternativas", "BotaoSair")]
 script = ExtResource("1_6ao3t")
 LabelPlacar = NodePath("Control/Margem/layout/topo/LabelPlacar")
 BarraProfessor = NodePath("Control/Margem/layout/topo/BarraProf")
-AnimJogador = NodePath("Control/Margem/layout/meio/Proto/AnimatedSprite2D")
-AnimProfessor = NodePath("Control/Margem/layout/meio/Professor/AnimatedSprite2D")
 BarraJogador = NodePath("Control/Margem/layout/topo/BarraProto")
-LabelEnunciado = NodePath("Control/Margem/layout/Baixo/LabelEnunciado")
+LabelEnunciado = NodePath("Control/Margem/layout/FundoBaixo/Baixo/LabelEnunciado")
 LabelFeedback = NodePath("Control/Margem/layout/meio/LabelFeedback")
-BotoesAlternativas = [NodePath("Control/Margem/layout/Baixo/GridContainer/Alt1"), NodePath("Control/Margem/layout/Baixo/GridContainer/Alt2"), NodePath("Control/Margem/layout/Baixo/GridContainer/alt3"), NodePath("Control/Margem/layout/Baixo/GridContainer/alt4")]
-BotaoSair = NodePath("Control/Margem/layout/Baixo/BotaoSair")
+LabelTempo = NodePath("Control/Margem/layout/meio/LabelTempo")
+LabelProgresso = NodePath("Control/Margem/layout/meio/Labelprogresso")
+FundoBaixo = NodePath("Control/Margem/layout/FundoBaixo")
+AnimacaoJogador = NodePath("Control/Margem/layout/meio/Proto/AnimatedSprite2D")
+AnimacaoProfessor = NodePath("Control/Margem/layout/meio/Professor/AnimatedSprite2D")
+BotoesAlternativas = [NodePath("Control/Margem/layout/FundoBaixo/Baixo/GridContainer/Alt1"), NodePath("Control/Margem/layout/FundoBaixo/Baixo/GridContainer/Alt2"), NodePath("Control/Margem/layout/FundoBaixo/Baixo/GridContainer/alt3"), NodePath("Control/Margem/layout/FundoBaixo/Baixo/GridContainer/alt4")]
+BotaoSair = NodePath("Control/Margem/layout/FundoBaixo/Baixo/BotaoSair")
 
 [node name="Control" type="Control" parent="BatalhaManager" unique_id=1254180785]
 layout_mode = 3
@@ -114,10 +137,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 24
+theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
 [node name="layout" type="VBoxContainer" parent="BatalhaManager/Control/Margem" unique_id=564916621]
 layout_mode = 2
@@ -162,6 +185,15 @@ size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
 
+[node name="LabelTempo" type="Label" parent="BatalhaManager/Control/Margem/layout/meio" unique_id=2104208426]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Proto" type="Control" parent="BatalhaManager/Control/Margem/layout/meio" unique_id=1945610299]
 custom_minimum_size = Vector2(32, 32)
 clip_contents = true
@@ -171,7 +203,7 @@ script = ExtResource("2_lbe5t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BatalhaManager/Control/Margem/layout/meio/Proto" unique_id=1109049287]
 texture_filter = 1
-position = Vector2(238, 168)
+position = Vector2(172, 167)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_5tqxe")
 animation = &"normal"
@@ -198,56 +230,66 @@ texture_filter = 1
 position = Vector2(186, 149)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_hj3k0")
-autoplay = "default"
-frame_progress = 0.17715074
+animation = &"normal"
+autoplay = "normal"
 
-[node name="Baixo" type="VBoxContainer" parent="BatalhaManager/Control/Margem/layout" unique_id=1581452985]
+[node name="Labelprogresso" type="Label" parent="BatalhaManager/Control/Margem/layout/meio" unique_id=1168090361]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 40
+
+[node name="FundoBaixo" type="PanelContainer" parent="BatalhaManager/Control/Margem/layout" unique_id=268030000]
+layout_mode = 2
+
+[node name="Baixo" type="VBoxContainer" parent="BatalhaManager/Control/Margem/layout/FundoBaixo" unique_id=1581452985]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="LabelEnunciado" type="Label" parent="BatalhaManager/Control/Margem/layout/Baixo" unique_id=112475291]
+[node name="LabelEnunciado" type="Label" parent="BatalhaManager/Control/Margem/layout/FundoBaixo/Baixo" unique_id=112475291]
 custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="GridContainer" type="GridContainer" parent="BatalhaManager/Control/Margem/layout/Baixo" unique_id=843241312]
+[node name="GridContainer" type="GridContainer" parent="BatalhaManager/Control/Margem/layout/FundoBaixo/Baixo" unique_id=843241312]
 layout_mode = 2
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
 columns = 2
 
-[node name="Alt1" type="Button" parent="BatalhaManager/Control/Margem/layout/Baixo/GridContainer" unique_id=1944190499]
+[node name="Alt1" type="Button" parent="BatalhaManager/Control/Margem/layout/FundoBaixo/Baixo/GridContainer" unique_id=1944190499]
 custom_minimum_size = Vector2(300, 70)
 layout_mode = 2
 size_flags_horizontal = 3
 autowrap_mode = 3
 clip_text = true
 
-[node name="Alt2" type="Button" parent="BatalhaManager/Control/Margem/layout/Baixo/GridContainer" unique_id=692454294]
+[node name="Alt2" type="Button" parent="BatalhaManager/Control/Margem/layout/FundoBaixo/Baixo/GridContainer" unique_id=692454294]
 custom_minimum_size = Vector2(300, 70)
 layout_mode = 2
 size_flags_horizontal = 3
 autowrap_mode = 3
 clip_text = true
 
-[node name="alt3" type="Button" parent="BatalhaManager/Control/Margem/layout/Baixo/GridContainer" unique_id=92138904]
+[node name="alt3" type="Button" parent="BatalhaManager/Control/Margem/layout/FundoBaixo/Baixo/GridContainer" unique_id=92138904]
 custom_minimum_size = Vector2(300, 70)
 layout_mode = 2
 size_flags_horizontal = 3
 autowrap_mode = 3
 clip_text = true
 
-[node name="alt4" type="Button" parent="BatalhaManager/Control/Margem/layout/Baixo/GridContainer" unique_id=68322892]
+[node name="alt4" type="Button" parent="BatalhaManager/Control/Margem/layout/FundoBaixo/Baixo/GridContainer" unique_id=68322892]
 custom_minimum_size = Vector2(300, 70)
 layout_mode = 2
 size_flags_horizontal = 3
 autowrap_mode = 3
 clip_text = true
 
-[node name="BotaoSair" type="Button" parent="BatalhaManager/Control/Margem/layout/Baixo" unique_id=133688259]
+[node name="BotaoSair" type="Button" parent="BatalhaManager/Control/Margem/layout/FundoBaixo/Baixo" unique_id=133688259]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 text = "sair"

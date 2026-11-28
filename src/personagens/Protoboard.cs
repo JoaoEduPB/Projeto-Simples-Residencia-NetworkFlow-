@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Protoboard : CharacterBody2D // mantenha o mesmo nome da classe do arquivo!
+public partial class Protoboard : CharacterBody2D
 {
 	[Export] public float Speed = 150.0f;
 	private AnimatedSprite2D _sprite;
@@ -22,11 +22,11 @@ public partial class Protoboard : CharacterBody2D // mantenha o mesmo nome da cl
 			if (direction.X != 0)
 				_sprite.FlipH = direction.X > 0;
 
-			_sprite.Play("Andando"); // substitua pelo nome da sua animação de andar
+			_sprite.Play("Andando"); 
 		}
 		else
 		{
-			_sprite.Play("Parado"); // ou _sprite.Play("idle");
+			_sprite.Play("Parado");
 			_sprite.Frame = 0;
 		}
 	}

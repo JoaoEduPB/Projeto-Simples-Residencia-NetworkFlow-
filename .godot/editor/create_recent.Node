@@ -1,7 +1,9 @@
+PanelContainer
+RichTextLabel
+Label
 Control
 Button
 GridContainer
-Label
 VBoxContainer
 TextureRect
 HBoxContainer
@@ -11,4 +13,3 @@ CanvasLayer
 Node
 AnimatedSprite2D
 Node2D
-Sprite2D

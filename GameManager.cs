@@ -22,7 +22,6 @@ public partial class GameManager : Node
 	public int Acertos { get; private set; }
 	public int Erros { get; private set; }
 
-	// NOVO: controle da batalha pendente entre cenas
 	public bool BatalhaPendente { get; private set; }
 	public string CenaRetorno { get; private set; }
 
@@ -53,7 +52,6 @@ public partial class GameManager : Node
 		_banco = JsonSerializer.Deserialize<Dictionary<string, List<Questao>>>(json, opcoes) ?? new();
 	}
 
-	// ALTERADO: recebe também a cena para onde voltar e marca a batalha como pendente
 	public bool IniciarBatalha(string nomeProfessor, string camada, int vidaMaxima, string cenaRetorno = null)
 	{
 		if (!_banco.TryGetValue(camada, out var questoes))
@@ -76,7 +74,7 @@ public partial class GameManager : Node
 		return true;
 	}
 
-	// NOVO: o BatalhaManager chama isso ao carregar; devolve true uma única vez
+
 	public bool ConsumirBatalhaPendente()
 	{
 		bool pendente = BatalhaPendente;
@@ -84,7 +82,6 @@ public partial class GameManager : Node
 		return pendente;
 	}
 
-	// Sorteia sem repetir. Retorna null se acabaram as questões.
 	public Questao ProximaQuestao()
 	{
 		if (_baralho.Count == 0)

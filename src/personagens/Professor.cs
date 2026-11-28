@@ -22,7 +22,6 @@ public partial class Professor : Area2D
 		BodyExited += OnBodyExited;
 	}
 
-	// ALTERADO: não carrega mais o JSON nem sorteia; delega tudo ao GameManager
 	public override void _Process(double delta)
 	{
 		if (!_jogadorPerto || !Input.IsActionJustPressed("ui_accept"))
@@ -34,7 +33,6 @@ public partial class Professor : Area2D
 			return;
 		}
 
-		// NOVO: guarda a cena atual para o botão Sair da batalha voltar para ela
 		string cenaAtual = GetTree().CurrentScene.SceneFilePath;
 
 		if (!GameManager.Instance.IniciarBatalha(NomeProfessor, CamadaChave, VidaMaxima, cenaAtual))
@@ -48,7 +46,6 @@ public partial class Professor : Area2D
 			GD.PrintErr($"Falha ao trocar de cena: {erro}");
 	}
 
-	// ALTERADO: mesmo critério na entrada e na saída (body is Protoboard)
 	private void OnBodyEntered(Node2D body)
 	{
 		if (body is Protoboard)
